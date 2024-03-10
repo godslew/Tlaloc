@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Tlaloc"
 include(":app")
+include(":designsystem")
