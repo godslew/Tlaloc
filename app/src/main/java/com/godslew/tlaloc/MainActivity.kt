@@ -1,12 +1,14 @@
 package com.godslew.tlaloc
 
+import android.app.PictureInPictureParams
+import android.os.Build
 import android.os.Bundle
+import android.util.Rational
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -26,8 +28,9 @@ import com.godslew.tlaloc.designsystem.theme.TlalocTheme
 
 class MainActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
     enableEdgeToEdge()
+    super.onCreate(savedInstanceState)
+    setupPip()
 
     setContent {
       val darkTheme = shouldUseDarkTheme()
@@ -35,18 +38,16 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         onDispose {}
       }
-
       TlalocTheme {
         // A surface container using the 'background' color from the theme
         Scaffold(
           modifier = Modifier
-            .fillMaxSize()
+            .fillMaxSize(),
         ) {
           LazyColumn(
             modifier = Modifier
-              .fillMaxSize()
-              .padding(it),
-            contentPadding = PaddingValues(vertical = 48.dp),
+              .fillMaxSize(),
+            contentPadding = it,
             horizontalAlignment = Alignment.CenterHorizontally,
           ) {
             items(
@@ -59,6 +60,17 @@ class MainActivity : ComponentActivity() {
           }
         }
       }
+    }
+  }
+
+  private fun setupPip() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+      setPictureInPictureParams(
+        PictureInPictureParams.Builder()
+          .setAspectRatio(Rational(9, 16))
+          .setAutoEnterEnabled(true)
+          .build()
+      )
     }
   }
 }
