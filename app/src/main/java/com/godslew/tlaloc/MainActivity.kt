@@ -1,11 +1,14 @@
 package com.godslew.tlaloc
 
+import android.app.PictureInPictureParams
+import android.os.Build
 import android.os.Bundle
+import android.util.Rational
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -16,9 +19,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.godslew.tlaloc.designsystem.theme.TlalocTheme
@@ -27,17 +30,24 @@ class MainActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     enableEdgeToEdge()
     super.onCreate(savedInstanceState)
+    setupPip()
+
     setContent {
+      val darkTheme = shouldUseDarkTheme()
+      DisposableEffect(darkTheme) {
+        enableEdgeToEdge()
+        onDispose {}
+      }
       TlalocTheme {
         // A surface container using the 'background' color from the theme
-        Surface(
+        Scaffold(
           modifier = Modifier
-            .fillMaxSize()
+            .fillMaxSize(),
         ) {
           LazyColumn(
             modifier = Modifier
               .fillMaxSize(),
-            contentPadding = PaddingValues(vertical = 48.dp),
+            contentPadding = it,
             horizontalAlignment = Alignment.CenterHorizontally,
           ) {
             items(
@@ -50,6 +60,17 @@ class MainActivity : ComponentActivity() {
           }
         }
       }
+    }
+  }
+
+  private fun setupPip() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+      setPictureInPictureParams(
+        PictureInPictureParams.Builder()
+          .setAspectRatio(Rational(9, 16))
+          .setAutoEnterEnabled(true)
+          .build()
+      )
     }
   }
 }
@@ -70,6 +91,9 @@ private fun TitleAndButton(
     )
   }
 }
+
+@Composable
+private fun shouldUseDarkTheme(): Boolean = isSystemInDarkTheme()
 
 @Preview
 @Composable
