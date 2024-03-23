@@ -28,12 +28,12 @@ import com.godslew.tlaloc.designsystem.theme.TlalocTheme
 
 class MainActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
-    enableEdgeToEdge()
     super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
     setupPip()
 
     setContent {
-      val darkTheme = shouldUseDarkTheme()
+      val darkTheme = isSystemInDarkTheme()
       DisposableEffect(darkTheme) {
         enableEdgeToEdge()
         onDispose {}
@@ -91,9 +91,6 @@ private fun TitleAndButton(
     )
   }
 }
-
-@Composable
-private fun shouldUseDarkTheme(): Boolean = isSystemInDarkTheme()
 
 @Preview
 @Composable
