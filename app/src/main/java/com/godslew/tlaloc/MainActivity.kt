@@ -33,11 +33,6 @@ class MainActivity : ComponentActivity() {
     setupPip()
 
     setContent {
-      val darkTheme = isSystemInDarkTheme()
-      DisposableEffect(darkTheme) {
-        enableEdgeToEdge()
-        onDispose {}
-      }
       TlalocTheme {
         // A surface container using the 'background' color from the theme
         Scaffold(
