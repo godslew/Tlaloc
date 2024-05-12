@@ -76,8 +76,7 @@ private val DarkColors =
 fun TlalocTheme(
   darkTheme: Boolean = isSystemInDarkTheme(),
   content:
-    @Composable()
-    () -> Unit,
+    @Composable () -> Unit,
 ) {
   val colorScheme =
     when {
