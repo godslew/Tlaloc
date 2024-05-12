@@ -30,80 +30,84 @@ import com.godslew.tlaloc.designsystem.theme.TlalocTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    enableEdgeToEdge()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
 
-    setContent {
-      TlalocTheme {
-        val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
-        // A surface container using the 'background' color from the theme
-        Scaffold(
-          modifier = Modifier
-            .fillMaxSize()
-            .nestedScroll(scrollBehavior.nestedScrollConnection),
-          topBar = {
-            TopAppBar(
-              modifier = Modifier
-                .statusBarsPadding(),
-              title = {
-                Text(
-                  text = "Tlaloc",
-                )
-              },
-              colors = TopAppBarDefaults.topAppBarColors().copy(
-                containerColor = Color.Transparent,
-                scrolledContainerColor = Color.Transparent,
-              ),
-              windowInsets = WindowInsets(0.dp),
-              scrollBehavior = scrollBehavior,
-            )
-          },
-          contentWindowInsets = WindowInsets(0.dp)
-        ) {
-          LazyColumn(
-            modifier = Modifier
-              .fillMaxSize(),
-            contentPadding = it,
-            horizontalAlignment = Alignment.CenterHorizontally,
-          ) {
-            items(
-              items = (1..100).toList(),
-            ) {
-              TitleAndButton(
-                title = "Number::$it"
-              )
+        setContent {
+            TlalocTheme {
+                val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
+                // A surface container using the 'background' color from the theme
+                Scaffold(
+                    modifier =
+                        Modifier
+                            .fillMaxSize()
+                            .nestedScroll(scrollBehavior.nestedScrollConnection),
+                    topBar = {
+                        TopAppBar(
+                            modifier =
+                                Modifier
+                                    .statusBarsPadding(),
+                            title = {
+                                Text(
+                                    text = "Tlaloc",
+                                )
+                            },
+                            colors =
+                                TopAppBarDefaults.topAppBarColors().copy(
+                                    containerColor = Color.Transparent,
+                                    scrolledContainerColor = Color.Transparent,
+                                ),
+                            windowInsets = WindowInsets(0.dp),
+                            scrollBehavior = scrollBehavior,
+                        )
+                    },
+                    contentWindowInsets = WindowInsets(0.dp),
+                ) {
+                    LazyColumn(
+                        modifier =
+                            Modifier
+                                .fillMaxSize(),
+                        contentPadding = it,
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                    ) {
+                        items(
+                            items = (1..100).toList(),
+                        ) {
+                            TitleAndButton(
+                                title = "Number::$it",
+                            )
+                        }
+                    }
+                }
             }
-          }
         }
-      }
     }
-  }
 }
 
 @Composable
 private fun TitleAndButton(
-  title: String,
-  modifier: Modifier = Modifier,
+    title: String,
+    modifier: Modifier = Modifier,
 ) {
-  Row(
-    modifier = modifier.padding(12.dp),
-    verticalAlignment = Alignment.CenterVertically,
-    horizontalArrangement = Arrangement.Center,
-  ) {
-    Text(
-      text = title,
-      style = MaterialTheme.typography.titleLarge
-    )
-  }
+    Row(
+        modifier = modifier.padding(12.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center,
+    ) {
+        Text(
+            text = title,
+            style = MaterialTheme.typography.titleLarge,
+        )
+    }
 }
 
 @Preview
 @Composable
 private fun TitleAndButtonPreview() {
-  TlalocTheme {
-    Surface {
-      TitleAndButton(title = "Number::1")
+    TlalocTheme {
+        Surface {
+            TitleAndButton(title = "Number::1")
+        }
     }
-  }
 }

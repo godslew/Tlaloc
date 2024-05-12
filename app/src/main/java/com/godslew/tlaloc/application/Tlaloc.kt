@@ -5,8 +5,8 @@ import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
 class Tlaloc : Application() {
-  override fun onCreate() {
-    super.onCreate()
-    // ToDo start up process
-  }
+    override fun onCreate() {
+        super.onCreate()
+        // ToDo start up process
+    }
 }
