@@ -18,8 +18,8 @@ indent_size = 2
 ktlint_code_style = ktlint_official
 ktlint_ignore_back_ticked_identifier = true
 
-ktlint_standard = enabled
-ktlint_function_naming_ignore_when_annotated_with = true
+ktlint_standard = enable
+ktlint_function_naming_ignore_when_annotated_with = Composable
 
 # Experimental rules run by default run on the ktlint code base itself. Experimental rules should not be released if
 # we are not pleased ourselves with the results on the ktlint code base.
