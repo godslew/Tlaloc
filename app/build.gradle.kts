@@ -5,6 +5,8 @@ plugins {
   alias(libs.plugins.hiltPlugin)
 }
 
+apply(from = "../ktlint.gradle.kts")
+
 android {
   namespace = "com.godslew.tlaloc"
   compileSdk = 34
