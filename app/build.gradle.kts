@@ -34,6 +34,18 @@ android {
       isDebuggable = true
     }
   }
+  flavorDimensions += "product_type"
+  productFlavors {
+    create("feature") {
+      dimension = "product_type"
+      buildConfigField("boolean", "FeatureFlag", "true")
+    }
+    create("production") {
+      dimension = "product_type"
+      buildConfigField("boolean", "FeatureFlag", "false")
+    }
+  }
+
   compileOptions {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
@@ -43,6 +55,7 @@ android {
   }
   buildFeatures {
     compose = true
+    buildConfig = true
   }
   composeOptions {
     kotlinCompilerExtensionVersion = libs.versions.composeExtension.get()

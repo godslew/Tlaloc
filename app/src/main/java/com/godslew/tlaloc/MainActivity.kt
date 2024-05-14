@@ -26,16 +26,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.godslew.tlaloc.core.common.domain.repository.FeatureFlagRepositoryType
 import com.godslew.tlaloc.designsystem.theme.TlalocTheme
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @OptIn(ExperimentalMaterial3Api::class)
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+  @Inject
+  internal lateinit var featureFlagRepository: FeatureFlagRepositoryType
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     enableEdgeToEdge()
-
     setContent {
       TlalocTheme {
         val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
