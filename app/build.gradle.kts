@@ -9,12 +9,12 @@ apply(from = "../ktlint.gradle.kts")
 
 android {
   namespace = "com.godslew.tlaloc"
-  compileSdk = 34
+  compileSdk = libs.versions.compileSdk.get().toInt()
 
   defaultConfig {
     applicationId = "com.godslew.tlaloc"
-    minSdk = 24
-    targetSdk = 34
+    minSdk = libs.versions.minSdk.get().toInt()
+    targetSdk = libs.versions.targetSdk.get().toInt()
     versionCode = 1
     versionName = "1.0"
 
@@ -29,6 +29,10 @@ android {
       isMinifyEnabled = false
       proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
     }
+    debug {
+      isDefault = true
+      isDebuggable = true
+    }
   }
   compileOptions {
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -41,7 +45,7 @@ android {
     compose = true
   }
   composeOptions {
-    kotlinCompilerExtensionVersion = "1.5.1"
+    kotlinCompilerExtensionVersion = libs.versions.composeExtension.get()
   }
   packaging {
     resources {
@@ -56,6 +60,7 @@ kapt {
 
 dependencies {
   implementation(project(":designsystem"))
+  implementation(project(":core:common"))
 
   implementation(libs.androidx.core.ktx)
   implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -69,10 +74,12 @@ dependencies {
   implementation(libs.androidx.ui.graphics)
   implementation(libs.androidx.ui.tooling.preview)
   implementation(libs.androidx.material3)
+  implementation(libs.navigation.compose)
 
   // hilt
   implementation(libs.dagger.hilt.android)
   kapt(libs.dagger.hilt.compiler)
+  implementation(libs.androidx.hilt.navigation.compose)
 
   testImplementation(libs.junit)
   androidTestImplementation(libs.androidx.junit)

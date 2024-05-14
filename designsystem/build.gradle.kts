@@ -5,10 +5,10 @@ plugins {
 
 android {
   namespace = "com.godslew.tlaloc.designsystem"
-  compileSdk = 34
+  compileSdk = libs.versions.compileSdk.get().toInt()
 
   defaultConfig {
-    minSdk = 24
+    minSdk = libs.versions.minSdk.get().toInt()
   }
 
   compileOptions {
@@ -24,7 +24,7 @@ android {
     compose = true
   }
   composeOptions {
-    kotlinCompilerExtensionVersion = "1.5.1"
+    kotlinCompilerExtensionVersion = libs.versions.composeExtension.get()
   }
 }
 
@@ -33,11 +33,6 @@ dependencies {
   implementation(platform(libs.androidx.compose.bom))
   implementation(libs.androidx.ui)
   implementation(libs.androidx.ui.graphics)
-  implementation(
-    libs.androidx
-      .ui
-      .tooling
-      .preview,
-  )
+  implementation(libs.androidx.ui.tooling.preview)
   implementation(libs.androidx.material3)
 }
