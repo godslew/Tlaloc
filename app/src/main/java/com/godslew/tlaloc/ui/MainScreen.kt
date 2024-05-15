@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
@@ -155,7 +156,7 @@ private fun RowScope.EventTab(
   onSelectedTab: (Tabs) -> Unit = {},
 ) {
   NavigationBarItem(
-    icon = { Icon(Icons.Filled.Home, contentDescription = null) },
+    icon = { Icon(Icons.Filled.DateRange, contentDescription = null) },
     label = { Text(stringResource(com.godslew.tlaloc.core.common.R.string.tab_event_title)) },
     selected = selected,
     onClick = {
