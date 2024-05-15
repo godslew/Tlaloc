@@ -5,6 +5,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.staticCompositionLocalOf
 
 private val LightColors =
   lightColorScheme(
@@ -76,7 +77,7 @@ private val DarkColors =
 fun TlalocTheme(
   darkTheme: Boolean = isSystemInDarkTheme(),
   content:
-    @Composable () -> Unit,
+  @Composable () -> Unit,
 ) {
   val colorScheme =
     when {
@@ -86,7 +87,16 @@ fun TlalocTheme(
 
   MaterialTheme(
     colorScheme = colorScheme,
-    typography = Typography,
     content = content,
   )
+}
+
+val LocalTypography = staticCompositionLocalOf {
+  Typography()
+}
+
+object TlalocTheme {
+  val typography: Typography
+    @Composable
+    get() = LocalTypography.current
 }

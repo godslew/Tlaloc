@@ -3,6 +3,7 @@ plugins {
   alias(libs.plugins.androidApplication)
   alias(libs.plugins.jetbrainsKotlinAndroid)
   alias(libs.plugins.hiltPlugin)
+  alias(libs.plugins.kotlin.serialization)
 }
 
 apply(from = "../ktlint.gradle.kts")
@@ -80,6 +81,7 @@ dependencies {
   implementation(libs.androidx.activity.compose)
   implementation(libs.material)
   implementation(libs.androidx.appcompat)
+  implementation(libs.kotlinx.serialization.json)
 
   // compose
   implementation(platform(libs.androidx.compose.bom))
@@ -88,10 +90,10 @@ dependencies {
   implementation(libs.androidx.ui.tooling.preview)
   implementation(libs.androidx.material3)
   implementation(libs.navigation.compose)
+  implementation(libs.androidx.compose.material)
 
   // navigation
-  implementation(libs.androidx.navigation.fragment.ktx)
-  implementation(libs.androidx.navigation.ui.ktx)
+  implementation(libs.navigation.compose)
 
   // hilt
   implementation(libs.dagger.hilt.android)
