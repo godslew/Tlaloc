@@ -71,6 +71,7 @@ private fun MainBottomBar(
   NavigationBar(
     modifier = modifier,
     containerColor = MaterialTheme.colorScheme.background,
+    tonalElevation = 0.dp,
   ) {
     HomeTab(
       navController = navController,
