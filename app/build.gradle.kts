@@ -89,6 +89,10 @@ dependencies {
   implementation(libs.androidx.material3)
   implementation(libs.navigation.compose)
 
+  // navigation
+  implementation(libs.androidx.navigation.fragment.ktx)
+  implementation(libs.androidx.navigation.ui.ktx)
+
   // hilt
   implementation(libs.dagger.hilt.android)
   kapt(libs.dagger.hilt.compiler)
