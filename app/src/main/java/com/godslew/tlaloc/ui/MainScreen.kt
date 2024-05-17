@@ -30,6 +30,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.godslew.tlaloc.core.common.domain.tabs.Tabs
+import com.godslew.tlaloc.feature.home.ui.HomeScreen
 
 @Composable
 fun MainScreen(
@@ -53,7 +54,11 @@ fun MainScreen(
       startDestination = Tabs.Home,
       modifier = Modifier.padding(paddingValues),
     ) {
-      composable<Tabs.Home> { }
+      composable<Tabs.Home> {
+        HomeScreen(
+          navController = navController,
+        )
+      }
       composable<Tabs.Favorite> { }
       composable<Tabs.Event> { }
       composable<Tabs.Profile> { }
