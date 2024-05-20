@@ -98,8 +98,14 @@ dependencies {
   // hilt
   implementation(libs.dagger.hilt.android)
   kapt(libs.dagger.hilt.compiler)
+  implementation(libs.androidx.hilt.navigation)
   implementation(libs.androidx.hilt.navigation.compose)
+  implementation(libs.androidx.hilt.navigation.fragment)
 
+  // ui
+  implementation(libs.compose.shimmer)
+
+  // test
   testImplementation(libs.junit)
   androidTestImplementation(libs.androidx.junit)
   androidTestImplementation(libs.androidx.espresso.core)
