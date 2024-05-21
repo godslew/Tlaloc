@@ -3,8 +3,10 @@ package com.godslew.tlaloc.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.godslew.tlaloc.core.common.domain.repository.FeatureFlagRepositoryType
-import com.godslew.tlaloc.core.common.domain.tabs.Tabs
+import com.godslew.tlaloc.value.Tabs
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -28,6 +30,13 @@ class MainViewModel
         selectedTab,
       ) { isFeature1Enabled, isFeature2Enabled, selectedTab ->
         UiState(
+          tabs =
+            persistentListOf(
+              Tabs.Home,
+              Tabs.Favorite,
+              Tabs.Event,
+              Tabs.Profile,
+            ),
           selectedTab = selectedTab,
           isFeature1Enabled = isFeature1Enabled,
           isFeature2Enabled = isFeature2Enabled,
@@ -44,6 +53,7 @@ class MainViewModel
   }
 
 data class UiState(
+  val tabs: ImmutableList<Tabs> = persistentListOf(),
   val selectedTab: Tabs = Tabs.Home,
   val isFeature1Enabled: Boolean = false,
   val isFeature2Enabled: Boolean = false,

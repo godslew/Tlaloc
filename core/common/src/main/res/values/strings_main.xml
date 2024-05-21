@@ -4,4 +4,5 @@
   <string name="tab_favorite_title">Favorite</string>
   <string name="tab_event_title">Event</string>
   <string name="tab_profile_title">Profile</string>
+  <string name="tab_gate_title">Gate</string>
 </resources>

@@ -82,6 +82,7 @@ dependencies {
   implementation(libs.material)
   implementation(libs.androidx.appcompat)
   implementation(libs.kotlinx.serialization.json)
+  implementation(libs.kotlinx.collections.immutable)
 
   // compose
   implementation(platform(libs.androidx.compose.bom))
